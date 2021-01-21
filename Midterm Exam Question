@@ -1,0 +1,197 @@
+Q1.
+import java.util.Scanner;
+
+abstract class vehicle{
+	String vehicle_name;
+	int vehicle_price;
+	abstract void show_info();
+	public abstract String toString();
+		
+}
+class two_wheeler extends vehicle{
+	int engin_volume;
+	int speed;
+	two_wheeler(String vehicle_name,int vehicle_price,int engin_volume,int speed){
+		super.vehicle_name=vehicle_name;
+		super.vehicle_price=vehicle_price;
+		this.engin_volume=engin_volume;
+		this.speed=speed;
+	}
+	public String toString() {
+		if(this.speed>100)return "Yes";
+		else return"No";  //PLEASE CHECK
+	}
+	void show_info() {
+		System.out.println("The vehicle name is " + super.vehicle_name+", and its price is " + super.vehicle_price + " CAD$.");
+		System.out.println("It is Two-Wheeler.");
+		System.out.println("The engine volume is " + this.engin_volume+", and its speed is " + this.speed+"km/h.");
+		System.out.println("It is for racing: " +toString());
+	
+	}
+}
+class four_wheeler extends vehicle{
+	int i;
+	String dealer[]=new String[5];
+	int numberOf_vehicles[]=new int[5];
+	four_wheeler(String vehicle_name,int vehicle_price,String[] dealer,int[] numberOf_vehicles){
+		super.vehicle_name=vehicle_name;
+		super.vehicle_price=vehicle_price;
+		this.dealer=dealer;
+		this.numberOf_vehicles=numberOf_vehicles;
+	}
+	int most_ordered_numberof_vehicles() {
+		int max=this.numberOf_vehicles[0];
+		int j=0;
+		for(int i=1;i<5;i++) {
+			if(this.numberOf_vehicles[i]>max) {max=this.numberOf_vehicles[i];j=i;}
+		}
+		return j;
+	}
+	void show_info() {
+		int j=most_ordered_numberof_vehicles();
+		System.out.println("The vehicle name is " + super.vehicle_name+", and its price is " + super.vehicle_price + " CAD$");
+		System.out.println("It is Four-Wheeler.");
+		System.out.println("The dealer with the most ordered number is " + this.dealer[j]+".");
+	}
+}
+public class Abstract01{
+	public static void main(String args[]) {
+		Scanner in=new Scanner(System.in);
+		int i;
+		System.out.print("Enter the vehicle name: ");
+		String vehicle_name=in.next();
+		System.out.print("Enter the vehicle price: ");
+		int vehicle_price=in.nextInt();
+		System.out.print("Choose:  1- two_wheeler vehicle   2- four_wheeler vehicle (enter 1 or 2)");
+		int ch=in.nextInt();
+		switch(ch) {
+			case 1: System.out.print("Enter the engin volume: ");
+					int engin_volume=in.nextInt();
+					System.out.print("Enter the speed: ");
+					int speed=in.nextInt();
+					System.out.print("Is the bike for racing? (Enter 1 if Yes or enter 2 if No)");
+					int ch2=in.nextInt();
+						switch(ch2) {
+							case 1: System.out.println("You have entered #1 - Yes");
+							break;
+							case 2: System.out.println("You have entered #2 - No");
+							break;
+						}
+					two_wheeler t=new two_wheeler(vehicle_name,vehicle_price,engin_volume,speed);
+					t.show_info();
+					break;
+			case 2: String dealer[]=new String[5];
+					int numberOf_vehicles[]=new int[5];
+					for(i=0;i<5;i++) {
+					      System.out.print("Enter the name of dealer: ");
+						dealer[i]=in.next();
+						System.out.print("Enter his cost offer: ");
+						numberOf_vehicles[i]=in.nextInt();
+					}
+					four_wheeler f=new four_wheeler(vehicle_name,vehicle_price,dealer,numberOf_vehicles);
+					f.show_info();
+					break;
+		}
+	}
+}
+
+
+Q2.
+
+import java.util.Scanner;
+
+abstract class vacation{
+	String destination;
+	float budget;
+	abstract void show_info();
+	//abstract void over_under_budget()
+		//return vehicle_name+" "+vehicle_price;
+}
+class all_inclusive extends vacation{
+	String brand;
+	String rating;
+	float actual_price;
+	all_inclusive(String destination, float budget, String brand,String rating,float actual_price){
+		super.destination=destination;
+		super.budget=budget;
+		this.brand=brand;
+		this.rating=rating;
+		this.actual_price=actual_price;
+	}
+	void over_under_budget(){
+		System.out.println( super.budget-this.actual_price);
+	}
+	void show_info() {
+		System.out.println("Destination: " + super.destination);
+		System.out.println("Specified budget: " + super.budget);
+		System.out.println("Brand: "+this.brand);
+		System.out.println("Rate: " + this.rating+" star hotel.");
+		System.out.print("You have (+) over budget/(-) under budget: ");
+		over_under_budget(); //CHECK AGAIN
+	
+	}
+}
+class piecemeal extends vacation{
+	int i;
+	String apply[]=new String[3];
+	float apply_cost[]=new float[3];
+	piecemeal(String destination, float budget,String[] apply,float[] apply_cost){
+		super.destination=destination;
+		super.budget=budget;
+		this.apply=apply;
+		this.apply_cost=apply_cost;
+	}
+
+	void over_under_budget1(){
+		System.out.println(super.budget-this.apply_cost[2]);
+	}
+	
+	void show_info() {
+		System.out.println("Destination: "+ super.destination);
+		System.out.println("Specified budget: " + super.budget);
+		System.out.print("Item: "+this.apply[i]+".");
+		System.out.println(" Corresponding cost "+this.apply_cost[i]);
+		System.out.print("Item: "+this.apply[i+1]+".");
+		System.out.println(" Corresponding cost "+this.apply_cost[i+1]);
+		System.out.println("You have (+) over budget/(-) under budget ");
+		System.out.print(super.budget-this.apply_cost[i]-this.apply_cost[i+1]);
+		
+	}
+}
+public class Abstract02{
+	public static void main(String args[]) {
+		Scanner in=new Scanner(System.in);
+		int i;
+		System.out.println("Enter the desired destination: ");
+		String destination=in.next();
+		System.out.println("Enter the specified budget:");
+		float budget=in.nextFloat();
+		System.out.print("Choose:  1- ALL-INCLUSIVE   2- PIECEMEAL");
+		int ch=in.nextInt();
+		switch(ch) {
+			case 1: System.out.print("Enter the package brand: ");
+					String brand=in.next();
+					System.out.print("Enter the rating(number of stars): ");
+					String rating=in.next();
+					System.out.print("Enter the package price: ");
+					float actual_price=in.nextFloat();
+					all_inclusive a=new all_inclusive(destination, budget, brand, rating,actual_price);
+					a.show_info();
+					break;
+			case 2: String apply[]=new String[3];
+					float apply_cost[]=new float[3];
+					System.out.print("How many of these items you want to apply for? Hotel - Airfare - Meal ");
+					int ch3=in.nextInt();
+					
+					for(i=0;i<ch3;i++) {
+					      System.out.print("Enter the item name: ");
+						apply[i]=in.next();
+						System.out.print("Enter the corresponding cost: ");
+						apply_cost[i]=in.nextFloat();
+					}
+					piecemeal p=new piecemeal(destination, budget, apply, apply_cost);
+					p.show_info();
+					break;
+		}
+	}
+}
