@@ -1,0 +1,25 @@
+/* 2-	Write a program to accept ten strings from the user and keep them in an string array. 
+Strings can be of any kind (alphabets, numbers, etc.) Try to convert these strings to integers and print them accordingly. 
+Using exception handling concept, avoid the program termination caused by impossible conversion and give a message:
+“Impossible to convert to number” to user about the reason and continue the execution for the rest of the blocks. */
+
+import java.util.Scanner;
+public class Prac02 {
+
+	public static void main(String[] args) {
+//		int conversion= n/1;
+		Scanner in = new Scanner(System.in);
+		String [] name = new String[10];
+		System.out.println("Enter the name");
+		String n = in.next();
+	
+		try {
+			String conversion= n;
+		}
+		catch(Exception conversion) {
+		System.out.println("The result is: "+conversion.getMessage());
+		conversion.printStackTrace();
+		}
+		
+	}
+}
