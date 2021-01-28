@@ -1,0 +1,26 @@
+/* 1-	Write a program to accept two integers, a and b, from the user and print the a/b. Using exception handling concept, 
+avoid the program termination caused by dividing by zero and giving proper message to user about the reason for not dividing two numbers. 
+Let him try again with two other set of numbers. 
+Unless and until she/he has not entered the acceptable numbers try-catch block would actively keep program running without any abnormal termination caused by dividing by zero. */  
+
+import java.util.Scanner;
+public class Prac01 {
+
+	public static void main(String[] args) {
+//		int a, b;
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter first integer");
+		try {int a = in.nextInt();}
+		catch(ArithmeticException a) {
+			System.out.println("Something wrong. It is error"+a.getMessage());
+			a.printStackTrace();
+		}
+		System.out.println("Please enter second integer");
+		try {int b = in.nextInt();}
+		catch(ArithmeticException b) {
+			System.out.println("Something wrong. It is error"+b.getMessage());
+			b.printStackTrace();
+		}
+	}
+
+}
