@@ -1,0 +1,21 @@
+/* Consider the following class:
+public class Store {
+public final double SALES_TAX_RATE = 0.06;
+private String name;
+public Store1(String name ){
+setName( name );
+}
+public String getName(){
+return name;
+}
+public void setName(String name ){
+this.name = name;
+}
+public String toString(){
+return("Name: " + name );
+}
+}
+create a class encapsulating a Mobile store, which inherits from Store. 
+A Mobile store has the following additional attributes: its annual sale and the number of hand-sets sold on monthly basis. 
+Code the constructor and the toString method of the new class; also code a method returning the average selling price for hand-set, 
+and another method to show the month in which the most hand-set sale has been experienced. You also need to include a client class to test your code. */
